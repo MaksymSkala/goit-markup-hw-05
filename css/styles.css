@@ -181,7 +181,7 @@ button {
 
 }
 
-.header-nav-list {    
+.header-nav-list {     
     display: flex;
     align-items: center;
     gap: 40px;
@@ -192,15 +192,37 @@ button {
     color: var(--color-ocean);
 }
 
-.header-nav-item {    
+.header-nav-item {
+    position: relative;    
     font-weight: 500;
     font-size: 16px;
     line-height: 1.5;
     letter-spacing: 0.02em;    
 }
+
+.header-nav-link.active {
+    color: var(--color-ocean);
+}
+
 .header-nav-link {
     padding: 24px 0 24px;
     color: var(--color-grey);      
+}
+
+.header-nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    
+}
+
+.header-nav-link.active::after {
+    background-color: var(--color-ocean);
 }
 
 .header-contact-link {
@@ -632,6 +654,25 @@ button {
     margin: 0;         
 }
 
+.portfolio-thumb{
+    position: relative;
+}
+
+/* Overlay */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 40px 32px;    
+    background-color: var(--color-iris);
+}
+
+.overlay-text {
+    color: var(--color-cloud);
+}
+
 /* Card set */
 
 .card-set {
@@ -643,4 +684,43 @@ button {
 .card-set-item {
     box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
     flex-basis: calc((100% - var(--indent) * var(--items) - 1)) / var(--items);
+}
+
+/* Modal window */
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(46, 47, 66, 0.4);    
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 408px;
+    height: 584px;
+    background-color: var(--color-dairy);
+    border-radius: 4px;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background-color: var(--color-cornflower);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.modal-close-icon {
+    color: var(--color-navy-blue);
 }
