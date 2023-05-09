@@ -13,10 +13,16 @@
     --color-navy-blue-modal: #2e2f42;
     --color-grey: #2e2f42;
     --color-white: #ffffff;
-    --color-dairy: #fcfcfc;    
+    --color-dairy: #fcfcfc; 
+    
+/* Others */
+    --anim-fast: 300ms ease-in;
+    --anim-slow: 800ms ease;
+
+    --header-idx: 10;
+    --modal-idx: 100;
 }
 
-/* Others */
 html {
     box-sizing: border-box;
 }
@@ -161,6 +167,7 @@ button {
 .header {
     border-bottom: 1px solid var(--color-cornflower);
     box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
+    z-index: var(--header-idx);
 }
 
 .header-nav {
@@ -217,8 +224,7 @@ button {
     display: block;
     width: 100%;
     height: 4px;
-    border-radius: 2px;
-    
+    border-radius: 2px;    
 }
 
 .header-nav-link.active::after {
@@ -694,17 +700,47 @@ button {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(46, 47, 66, 0.4);    
+    background-color: rgba(46, 47, 66, 0.4);
+    z-index: var(--modal-idx);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: initial;
+    transition: opacity var(--anim-fast), visibility var(--anim-fast);    
+}
+
+.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .modal {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: calc(50%);
+    left: calc(50%);
+    transform: translateX(-50%) translateY(-50%);
     width: 408px;
     height: 584px;
     background-color: var(--color-dairy);
     border-radius: 4px;
+    transition: opacity 250ms ease-in, transform 250ms ease-in;
+    transition-delay: 300ms;
+}
+
+.backdrop,
+.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition-delay: 250ms;
+}
+
+.backdrop,
+.is-hidden,
+.modal {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50%);
+    transition-delay: 0ms;
 }
 
 .modal-close-btn {
@@ -721,6 +757,7 @@ button {
     border-radius: 50%;
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
+
 .modal-close-icon {
     color: var(--color-navy-blue);
 }
