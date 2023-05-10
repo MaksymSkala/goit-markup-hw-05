@@ -702,10 +702,6 @@ button {
     background-color: var(--color-iris);
 }
 
-.overlay-text {
-    color: var(--color-cloud);
-}
-
 /* Card set */
 
 .card-set {
